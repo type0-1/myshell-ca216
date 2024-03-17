@@ -57,7 +57,7 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 
 * `<`: Redirects input from a file to a command. e.g., `[command] < [input_file]`
 * `>`: Redirects output from a command to a file and overwrites the file if it exists. e.g., `[command] > [output_file]`
-* `>>`: Append output from a command to a file. e.g., `[command] < [input_file] > [output_file]`.
+* `>>`: Append output from a command to a file. e.g., `[command] < [input_file] >> [output_file]`.
 
 ## *BACKGROUND & FOREGROUND PROGRAM EXECUTION*
 
@@ -71,12 +71,12 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 
 ### *MAIN DIFFERENCE*
        
-* **Background Program Execution**: 
+#### **Background Program Execution**: 
 
 - Executes commands in a multi-task basis, allowing for concurrent execution of multiple commands using child processes.
 - Is invoked using the `&` at the end of a command
 
-* **Foreground Program Execution**: 
+#### **Foreground Program Execution**: 
 
 - Executes commands in a single-task basis, within myshell's main process itself.
 - Is not invoked using `&` at the end of a command
