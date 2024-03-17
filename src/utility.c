@@ -2,8 +2,8 @@
     Name: Samson Oloruntola
     Student Number: 22714745
 
-    I, Samson Oloruntola, acknowledge all consequences to violating the DCU Academic Integrity and Plagiarism Policy
-    for assignment 1, MyShell in CA216.
+    I, Samson Oloruntola, acknowledge all consequences for violating the DCU Academic Integrity and Plagiarism Policy 
+    and accept any penalties that are in place if I engage in any activity which breaches this policy for assignment 1, myshell in CA216.
 */
 
 // Importing the C header file "myshell.h" to utilize functions, global variables and import libraries 
@@ -118,7 +118,7 @@ void executeQuit(char *username) {
     // Display prompts, use sleep() and then clear screen before exiting.
     printf("\n==> See you later, %s!\n", username);
     sleep(1);
-    printf("==> Exiting MyShell...\n\n");
+    printf("==> Exiting myshell...\n\n");
     sleep(2);
     executeClr();
     exit(EXIT_SUCCESS); // Exit success.
@@ -342,7 +342,7 @@ void runShell() {
         if (getcwd(cwd, sizeof(cwd)) == NULL) { // Try retrieving the cwd, display error if it fails
             perror("A getcwd error has occured\n");
         } else {
-            printf("[MyShell: %s] ~%s> ", username, cwd); // Display prompt
+            printf("[myshell: %s] ~%s> ", username, cwd); // Display prompt
         }
         fgets(command, MAX_BUFFER, stdin); // Read command from stdin
         command[strcspn(command, "\n")] = '\0'; // Find the first occurence of the newline character and set it to the null terminator.
@@ -398,7 +398,7 @@ void welcomeUser(char *username){
     // Clear the screen and display ASCII art.
     executeClr(); 
 
-    printf("*----------------------|MyShell Program|-----------------------*\n");
+    printf("*----------------------|myshell Program|-----------------------*\n");
     printf("|                      *-_=_=_=_=_=_=_-*                       |\n");
     printf("|   Student Name                               Student Number  |\n");
     printf("| -----------------                               --------     |\n");
@@ -406,8 +406,8 @@ void welcomeUser(char *username){
     printf("|                                                              |\n");
     printf("*--------------------------------------------------------------*\n\n");
     // Introductory text displayed to the user
-    printf("===== Welcome to MyShell, %s! =====\n\n", username);
-    printf("==> To see more information on MyShell, run 'help' to view the user manual.\n");
+    printf("===== Welcome to myshell, %s! =====\n\n", username);
+    printf("==> To see more information on myshell, run 'help' to view the user manual.\n");
     printf("==> To exit the program, run 'quit'.\n");
     printf("==> To clear this screen, run 'clr'.\n\n");
     // Sleep for 3 seconds total, for user to read text.

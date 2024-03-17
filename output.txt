@@ -1,8 +1,0 @@
-README.md
-batchfile
-bin
-makefile
-manual
-output.txt
-output2.txt
-src
