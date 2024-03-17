@@ -23,7 +23,7 @@ myshell supports a wide range of built-in commands for you to execute. These sai
 
 ### *EXAMPLES OF COMMAND OPERATION/EXECUTION*
 
-Below are examples of command-line execution for the built in commands:
+Below are examples of command-line execution for the built in commands (the command will follow the format [command]):
 
 - `cd`:  [cd] [directory] or [cd]
 - `clr`: [clr]
@@ -38,7 +38,18 @@ Below are examples of command-line execution for the built in commands:
 
 Any command not built into myshell is considered as an 'External Command'. myshell allows the execution of these external commands, displaying the resulting output to you. 
 
-For example, running 'pwd' will print the current working directory and display the output to you.
+For example, running `pwd` will print the current working directory and display the output to you.
+
+## *PROGRAM ENVIRONMENT*
+
+myshell provides access to the shell environment, and as so, to the environment variables. Environment variables store information about the system, and the program environment determines how te program will behave. Environment variables are utilized in my parts of the source code to display information about the system.
+
+There are primarily two different types of environment variables.
+
+* System Variables: These variables are pre-defined in your system and display information about it. `HOME, PWD, SHELL` etc.
+* User Variables: These variables are defined by the user.
+
+- For example, when you run myshell, your user name associated with the device running myshell is displayed to you in the command-line prompt. This was achieved by the `USER` environment variable.
 
 ## *INPUT/OUTPUT REDIRECTION*
 
@@ -46,11 +57,7 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 
 * `<`: Redirects input from a file to a command. e.g., 'command < input_file'
 * `>`: Redirects output from a command to a file and overwrites the file if it exists. e.g., 'command > output_file'
-* `>>`: Append output from a command to a file. e.g., 'command < input_file > output_file'
-
-## *PROGRAM ENVIRONMENT*
-
-myshell provides access to the shell environment, and as so, to the environment variables. Environment variables store information about the system, and the program environment determines how te program will behave. Environment variables are utilized in my parts of the source code to display information and functionality.
+* `>>`: Append output from a command to a file. e.g., 'command < input_file > output_file'.
 
 ## *BACKGROUND & FOREGROUND PROGRAM EXECUTION*
 
@@ -75,8 +82,8 @@ myshell provides access to the shell environment, and as so, to the environment 
 3. Love, R. (2013). Linux System Programming. O'Reilly Media, Inc.
 4. Molay, B. (2002). Understanding Unix Linux Programming. Turtleback.
 
-## ACKNOWLEDGEMENT TO DCU'S ACADEMIC INTEGRITY & PLAGIARISM POLICY
+## **ACKNOWLEDGEMENT TO DCU'S ACADEMIC INTEGRITY & PLAGIARISM POLICY**
 
-- Name: *Samson Oloruntola*
-- Student Number: *22714745*
+- Name: **Samson Oloruntola**
+- Student Number: **22714745**
 - I, Samson Oloruntola, acknowledge all consequences for violating the DCU Academic Integrity and Plagiarism Policy and accept any penalties that are in place if I engage in any activity which breaches this policy for assignment 1, myshell in CA216.
