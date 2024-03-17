@@ -8,18 +8,31 @@ myshell
 
 myshell is a simple shell/command line interpreter created in the C programming language, which enables you to interact with the computer's operating system by providing basic functionality for executing commands, managing different processes, and manipulating files. 
 
-## *INTERNAL COMMANDS*
+## *INTERNAL COMMANDS & DESCRIPTIONS*
 
 myshell supports a wide range of built-in commands for you to execute. These said commands are referred to as 'Internal Commands'. These internal commands are listed below and allow you to execute a range of useful commands.
 
-* `cd`: Change the current directory, or print the current directory if only 'cd' is invoked
-*  `clr`: Clear the screen -> equivalent to 'clear'
-* `dir`: List directory contents -> equivalent to 'ls -al <directory>' or 'ls al'. if only dir is invoked, it prints information on the current directory
-* `environ`: List all environment variables
-* `echo`: Print arguments to the screen
-* `help`: Displays help information from the manual
-* `pause`: Pauses the shell until 'Enter' is pressed
-* `quit`: Exits the shell and terminates all shell processes.
+* `cd`:-> Change the current directory or print the current directory if only 'cd' is invoked
+*  `clr`:-> Clears the screen, equivalent to 'clear'
+* `dir`:-> List directory contents, equivalent to 'ls -al <directory>' or 'ls al'. if only dir is invoked, it prints information on the current directory
+* `environ`:-> List all environment variables
+* `echo`:-> Print arguments to the screen
+* `help`:-> Displays help information from the manual
+* `pause`:-> Pauses the shell until 'Enter' is pressed
+* `quit`:-> Exits the shell and terminates all shell processes.
+
+### *EXAMPLES OF COMMAND OPERATION/EXECUTION*
+
+Below are examples of command-line execution for the built in commands:
+
+- `cd`:  [cd] [directory] or [cd]
+- `clr`: [clr]
+- `dir`: [dir] or [dir] [directory]
+- `environ`: [environ]
+- `echo`: [echo] or [echo] [arg(s)]
+- `help`: [help]
+- `pause`: [pause]
+- `quit`: [quit]
 
 ## *EXTERNAL COMMANDS*
 
