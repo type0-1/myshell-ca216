@@ -11,7 +11,7 @@
 #include <stdio.h> // Stdin & Output
 #include <stdlib.h> // Library functions
 #include <string.h> // String manipulation
-#include <unistd.h> // Symbolic constants, types & function use.
+#include <unistd.h> // Types & function use.
 #include <fcntl.h> // File processing controls
 #include <errno.h> // Error handling
 #include <sys/types.h>  // Data types

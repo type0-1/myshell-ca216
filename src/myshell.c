@@ -10,7 +10,7 @@
 #include "myshell.h"
 
 int main(int argc, char *argv[]) {
-    // Set the parent & shell environment variable shell to the shell path.
+    // Set the shell environment variable shell to the shell path.
     setEnv(argv[0]);
 
     if (argc == 2) {
