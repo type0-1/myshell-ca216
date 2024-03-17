@@ -110,4 +110,4 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 
 - Name: **Samson Oloruntola**
 - Student Number: **22714745**
-- I, Samson Oloruntola, acknowledge all consequences for violating the DCU Academic Integrity and Plagiarism Policy and accept any penalties that are in place if I engage in any activity which breaches this policy for assignment 1, in CA216 - Operating Systems.
+- I, Samson Oloruntola, acknowledge all consequences for violating the DCU Academic Integrity and Plagiarism Policy and accept any penalties that are in place if I engage in any activity which breaches this policy for assignment 1 in CA216 - Operating Systems.
