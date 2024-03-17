@@ -1,12 +1,15 @@
 # myshell: Manual
 
+
 ## *NAME*
 
 **myshell** - A simple shell 
 
+
 ## *DESCRIPTION*
 
 myshell is a simple shell/command line interpreter created in the C programming language, which enables you to interact with the computer's operating system by providing basic functionality for executing commands, managing different processes, and manipulating files. 
+
 
 ## *INTERNAL COMMANDS & DESCRIPTIONS*
 
@@ -21,6 +24,7 @@ myshell supports a wide range of built-in commands for you to execute. These sai
 * `pause`:-> Pauses the shell until 'Enter' is pressed
 * `quit`:-> Exits the shell and terminates all shell processes.
 
+
 ### *EXAMPLES OF COMMAND OPERATION/EXECUTION*
 
 Below are examples of command-line execution for the built in commands (the command will follow the format [command]):
@@ -34,11 +38,13 @@ Below are examples of command-line execution for the built in commands (the comm
 - `pause`: [pause]
 - `quit`: [quit]
 
+
 ## *EXTERNAL COMMANDS*
 
 Any command not built into myshell is considered as an *'External Command'*. myshell allows the execution of these external commands, displaying the resulting output to you. 
 
 For example, running `pwd` will print the current working directory and display the output to you.
+
 
 ## *PROGRAM ENVIRONMENT*
 
@@ -52,6 +58,7 @@ There are primarily two different types of environment variables.
 
 - For example, when you run myshell, your user name associated with the device running myshell is displayed to you in the command-line prompt. This was achieved by retrieving the `USER` environment variable and displaying it.
 
+
 ## *INPUT/OUTPUT REDIRECTION*
 
 Input/Output (I/O) redirection is one of the many features in myshell, where I/O redirecton allows you to control where input for a command comes from, as well as where the output of the command goes to. myshell supports input/output redirection using the following operators:
@@ -60,29 +67,36 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 * `>`: Redirects output from a command to a file and overwrites the file if it exists. e.g., `[command] > [output_file]`
 * `>>`: Append output from a command to a file. e.g., `[command] [args] < [input_file] >> [output_file]`.
 
+
 ## *BACKGROUND & FOREGROUND PROGRAM EXECUTION*
+
 
 ### *BACKGROUND PROGRAM EXECUTION*
        
 * Background program execution allows myshell to multitask, running commands asynchronously. You are able run commands in the background by appending the ampersand `&` symbol to the end of the command. myshell notifies you with a message displaying the command invoked and the PID (Process ID) of the background process.
 
+
 ### *FOREGROUND PROGRAM EXECUTION*
 
 * Foreground program execution performs commands within myshell's main process ID itself, in a single-task basis, ideally for immediate execution of important commands. You can invoke foreground commands by simply disregarding the ampersand `&` symbol when invoking a command to execute them in the foreground. This way of executing a command is to be differentiated from background program execution because the behaviours from background & foreground execution are processed in a different way.
 
+
 ### *MAIN DIFFERENCE*
        
+
 #### **Background Program Execution**: 
 
 - Executes commands in a multi-task basis 
 - Concurrently executes multiple commands using child processes.
 - Is invoked using the `&` at the end of a command
 
+
 #### **Foreground Program Execution**: 
 
 - Executes commands in a single-task basis
 - Uses myshell's main process itself for executing commands
 - Is not invoked using `&` at the end of a command
+
 
 ## *REFERENCES*
 
@@ -91,8 +105,9 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 3. Love, R. (2013). Linux System Programming. O'Reilly Media, Inc.
 4. Molay, B. (2002). Understanding Unix Linux Programming. Turtleback.
 
+
 ## **ACKNOWLEDGEMENT TO DCU'S ACADEMIC INTEGRITY & PLAGIARISM POLICY**
 
 - Name: **Samson Oloruntola**
 - Student Number: **22714745**
-- I, Samson Oloruntola, acknowledge all consequences for violating the DCU Academic Integrity and Plagiarism Policy and accept any penalties that are in place if I engage in any activity which breaches this policy for assignment 1, myshell in CA216.
+- I, Samson Oloruntola, acknowledge all consequences for violating the DCU Academic Integrity and Plagiarism Policy and accept any penalties that are in place if I engage in any activity which breaches this policy for assignment 1, in CA216 - Operating Systems.
