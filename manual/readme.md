@@ -1,4 +1,4 @@
-# myshell User Manual
+# myshell: Manual
 
 ## *NAME*
 
@@ -46,7 +46,8 @@ myshell provides access to the shell environment, and as so, to the environment 
 
 There are primarily two different types of environment variables.
 
-* *System Variables*: These variables are pre-defined in your system and display information about it. `HOME`, `PWD`, `SHELL` etc.
+* *System Variables*: These variables are pre-defined in your system and display information about the corresponding environment variable. `HOME`, `PWD`, `SHELL` etc.
+
 * *User Variables*: These variables are defined by the user.
 
 - For example, when you run myshell, your user name associated with the device running myshell is displayed to you in the command-line prompt. This was achieved by retrieving the `USER` environment variable and displaying it.
@@ -57,7 +58,7 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 
 * `<`: Redirects input from a file to a command. e.g., `[command] < [input_file]`
 * `>`: Redirects output from a command to a file and overwrites the file if it exists. e.g., `[command] > [output_file]`
-* `>>`: Append output from a command to a file. e.g., `[command] < [input_file] >> [output_file]`.
+* `>>`: Append output from a command to a file. e.g., `[command] [args] < [input_file] >> [output_file]`.
 
 ## *BACKGROUND & FOREGROUND PROGRAM EXECUTION*
 
@@ -73,12 +74,14 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
        
 #### **Background Program Execution**: 
 
-- Executes commands in a multi-task basis, allowing for concurrent execution of multiple commands using child processes.
+- Executes commands in a multi-task basis 
+- Concurrently executes multiple commands using child processes.
 - Is invoked using the `&` at the end of a command
 
 #### **Foreground Program Execution**: 
 
-- Executes commands in a single-task basis, within myshell's main process itself.
+- Executes commands in a single-task basis
+- Uses myshell's main process itself for executing commands
 - Is not invoked using `&` at the end of a command
 
 ## *REFERENCES*
