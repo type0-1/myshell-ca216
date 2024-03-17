@@ -380,7 +380,7 @@ void runShellFromFile(FILE *file) {
 */
 
 void parseArgs(){
-    // Set initial arg size to 0 and begin tokenization on command, based on whitespace.
+    // Set initial arg size to 0 and begin tokenization on command, based on separators.
     argSize = 0; 
     char *ptr = strtok(command, " \t\n");
 

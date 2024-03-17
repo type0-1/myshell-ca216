@@ -68,7 +68,7 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 
 ### *FOREGROUND PROGRAM EXECUTION*
 
-* Foreground program execution performs commands within myshell's main process ID itself, in a single-task basis, ideally for immediate execution of important commands. You can invoke commands by simply disregarding the ampersand `&` symbol when invoking a command to execute them in the foreground. This way of executing a command is to be differentiated from background program execution because the behaviours from background & foreground execution are processed in a different way.
+* Foreground program execution performs commands within myshell's main process ID itself, in a single-task basis, ideally for immediate execution of important commands. You can invoke foreground commands by simply disregarding the ampersand `&` symbol when invoking a command to execute them in the foreground. This way of executing a command is to be differentiated from background program execution because the behaviours from background & foreground execution are processed in a different way.
 
 ### *MAIN DIFFERENCE*
        
