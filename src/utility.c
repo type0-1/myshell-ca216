@@ -363,7 +363,10 @@ void parseArgs(){
     args[argSize] = NULL; // Terminate the args array with NULL
 }
 
-/* Function to welcome the user */
+/* 
+Function to welcome the user 
+This welcome screen was inspired by: https://termcast.computing.dcu.ie/
+*/
 void welcomeUser(char *username){
     // Clear the screen
     executeClr(); 
