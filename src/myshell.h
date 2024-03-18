@@ -24,9 +24,19 @@
 #define MAX_DIR_LENGTH 512
 // Define maximum number of command-line arguments
 #define MAX_ARGS 50
+/*
+ This code was sourced from: 
 
+ https://c-for-dummies.com/blog/?p=5270 
+ https://stackoverflow.com/questions/3219393/stdlib-and-colored-output-in-c
 
-// Declare global variables to be used for the shell program
+ Defining ANSI colour-codes (used for colour-coding throughout the program)
+*/
+#define ANSI_COLOR_RED "\x1b[31m"
+#define ANSI_COLOR_BLUE "\x1b[34m"
+#define ANSI_COLOR_YELLOW "\x1b[33m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_RESET "\x1b[0m"
 
 extern char **environ; // Environment variables
 extern char cwd[MAX_DIR_LENGTH]; // Current working directory
@@ -35,7 +45,6 @@ extern char *args[MAX_ARGS]; // Array to store command-line arguments
 extern int argSize; // Number of command-line arguments
 extern bool runInBackground; // Flag indicating background execution
 extern char *username; // Username from the users device
-
 
 // Function prototypes for internal commands
 

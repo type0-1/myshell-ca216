@@ -107,9 +107,9 @@ void executePause() {
 /* Function that executes the built-in "quit" command */
 void executeQuit(char *username) {
     // Display prompts, use sleep() and then clear screen before exiting.
-    printf("\n==> See you later, %s!\n", username);
+    printf("\n==> See you later, "ANSI_COLOR_YELLOW"%s"ANSI_COLOR_RESET"!\n", username);
     sleep(1);
-    printf("==> Exiting myshell...\n\n");
+    printf("==> Exiting "ANSI_COLOR_RED"myshell"ANSI_COLOR_RESET"...\n\n");
     sleep(2);
     executeClr();
     exit(EXIT_SUCCESS); // Exit success.
@@ -317,8 +317,8 @@ void runShell() {
     while (1) {
         if (getcwd(cwd, sizeof(cwd)) == NULL) { // Try retrieving the cwd, display error if it fails
             perror("A getcwd error has occured\n");
-        } else {
-            printf("[myshell: %s] ~%s> ", username, cwd); // Display prompt
+        } else { // Display prompt with colour coding
+            printf("["ANSI_COLOR_YELLOW"myshell"ANSI_COLOR_RESET":"ANSI_COLOR_MAGENTA" %s"ANSI_COLOR_RESET"] ~"ANSI_COLOR_BLUE"%s"ANSI_COLOR_RESET"> ", username, cwd); 
         }
         fgets(command, MAX_BUFFER, stdin); // Read command from stdin
         command[strcspn(command, "\n")] = '\0'; // Find the first occurence of the newline character and set it to the null terminator.
@@ -367,19 +367,23 @@ void parseArgs(){
 Function to welcome the user 
 This welcome screen was inspired by: https://termcast.computing.dcu.ie/
 */
+
 void welcomeUser(char *username){
     // Clear the screen
     executeClr(); 
     // Introductory text displayed to the user
-    printf("=====:[ Welcome to myshell, %s! ]:=====\n\n", username);
+    printf("=====:[ Welcome to myshell, ");
 
-    printf("@---o--o--o--o--o--o[: Info :]o--o--o--o--o--o--@\n");
-    printf("|                                               |\n");
-    printf("|      Run `help` to view the user manual       |\n");
-    printf("|      To exit the program, run `quit`          |\n");
-    printf("|      To clear this screen, run `clr`          |\n");
-    printf("|                                               |\n");
-    printf("@--o--o--o--o--o--o[==========]o--o--o--o--o--o-@\n\n");
+    // Display welcome screen, colour functionality was sourced from: https://stackoverflow.com/questions/3219393/stdlib-and-colored-output-in-c
+    printf(ANSI_COLOR_YELLOW "%s" ANSI_COLOR_RESET "! ]:=====\n\n" , username);
+
+    printf("@---o--o--o--o--o--o[:" ANSI_COLOR_YELLOW " Info :" ANSI_COLOR_RESET "]o--o--o--o--o--o---@\n");
+    printf("|                                                |\n");
+    printf("|       Run " ANSI_COLOR_MAGENTA "`help`" ANSI_COLOR_RESET " to view the user manual       |\n");
+    printf("|       To exit the program, run "ANSI_COLOR_MAGENTA"`quit`"ANSI_COLOR_RESET"          |\n");
+    printf("|       To clear this screen, run "ANSI_COLOR_MAGENTA"`clr`"ANSI_COLOR_RESET"          |\n");
+    printf("|                                                |\n");
+    printf("@--o--o--o--o--o--o[==========]o--o--o--o--o--o--@\n\n");
 
     // Sleep for 3 seconds total.
     sleep(1);
