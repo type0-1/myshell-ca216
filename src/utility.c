@@ -25,7 +25,7 @@ char *username;
 */
 
 void executeCD() {
-    // Get the current working directory, print it to the user and update the PWD environment variable, else display error.
+    // Get the current working directory, print it to the user and update the PWD environment variable.
     if (argSize == 1) { // Only "cd" was invoked
         if (getcwd(cwd, sizeof(cwd)) != NULL) {
             printf("%s\n", cwd);
@@ -89,7 +89,7 @@ void executeHelp() {
     // This code is adapted from: https://overiq.com/c-programming-101/the-sprintf-function-in-c/ to handle string assignment.
     sprintf(command, "more -d %s", ptr);
 
-    // Clear the screen before displaying the manual and execute the command afterwards, displaying an error if needed.
+    // Clear the screen before displaying the manual and execute the command afterwards.
     executeClr();
     
     system(command);
@@ -121,7 +121,7 @@ void executeDir() {
         system("ls -al"); 
     } else if (argSize == 2) { // If the directory is included, assign directory name to char pointer "dir"
         char *command = malloc(strlen("ls -al " + strlen(args[1]) + 1)); // Allocate memory to local variable command
-        if(command == NULL){ // If memory allocation has failed, print error
+        if(!command){ // If memory allocation has failed, print error
             perror("Memory allocation has failed!");
             exit(EXIT_FAILURE);
         } 
@@ -164,7 +164,7 @@ void IORedirection() {
         perror("A forking error has occured in regards to I/O redirection\n"); // Display fork error
         exit(EXIT_FAILURE);
     } else if (pid == 0) { 
-        setenv("PARENT", getenv("SHELL"), 1);
+        setenv("PARENT", getenv("SHELL"), 1); // Set the PARENT environment to the SHELL variable value
         // Initialize input & output index to -1 (flags for redirection)
         int input_index = -1, output_index = -1;
         for (int i = 0; i < argSize; ++i) { // Find the indices of input and/or output files
