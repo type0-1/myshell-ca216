@@ -372,11 +372,9 @@ void welcomeUser(char *username){
     // Clear the screen
     executeClr(); 
     // Introductory text displayed to the user
-    printf("=====:[ Welcome to myshell, ");
+    printf("=====:[ Welcome to myshell, "ANSI_COLOR_YELLOW"%s"ANSI_COLOR_RESET"! ]:=====\n\n", username);
 
     // Display welcome screen, colour functionality was sourced from: https://stackoverflow.com/questions/3219393/stdlib-and-colored-output-in-c
-    printf(ANSI_COLOR_YELLOW "%s" ANSI_COLOR_RESET "! ]:=====\n\n" , username);
-
     printf("@---o--o--o--o--o--o[:" ANSI_COLOR_YELLOW " Info :" ANSI_COLOR_RESET "]o--o--o--o--o--o---@\n");
     printf("|                                                |\n");
     printf("|       Run " ANSI_COLOR_MAGENTA "`help`" ANSI_COLOR_RESET " to view the user manual       |\n");
