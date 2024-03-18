@@ -30,19 +30,13 @@ void executeCD() {
         if (getcwd(cwd, sizeof(cwd)) != NULL) {
             printf("%s\n", cwd);
             setenv("PWD", cwd, 1);
-        } else {
-            perror("getcwd error");
-        }
+        } 
     // Change directory, retrieve the current working directory and update the PWD, else display error.
     } else if (argSize == 2) { // A directory was included
         if (chdir(args[1]) == 0) {
             if (getcwd(cwd, sizeof(cwd)) != NULL) {
                 setenv("PWD", cwd, 1); 
-            } else {
-                perror("A getcwd error has occured!\n"); // Display getcwd error (error retrieving cwd)
             }
-        } else {
-            perror("A chdir error has occured!\n"); // Display chdir error (error changing directory)
         }
     } else { // Invalid arguments
         fprintf(stderr, "Invalid arguments for cd\n"); // Invalid arguments invoked
@@ -64,7 +58,7 @@ void executeHelp() {
 
     // Allocate memory and create the absolute path to the manual
     char *manual_path = malloc(strlen(cwd) + strlen("/manual/readme.md") + 1);
-    if (manual_path == NULL) {
+    if (!manual_path) {
         perror("Memory allocation failed");
         exit(EXIT_FAILURE);
     }
@@ -77,7 +71,7 @@ void executeHelp() {
     // This code is adapted from: https://stackoverflow.com/questions/229012/getting-absolute-path-of-a-file for retrieving absolute path
 
     char *ptr = realpath(manual_path, NULL);
-    if (ptr == NULL) {
+    if (!ptr) {
         perror("Error getting absolute path of manual");
         free(manual_path);
         exit(EXIT_FAILURE);
@@ -85,7 +79,7 @@ void executeHelp() {
 
     // Alllocate memory and display error if appropriate 
     char *command = malloc(strlen("more -d ") + strlen(ptr) + 1);
-    if (command == NULL) {
+    if (!command) {
         perror("Memory allocation failed");
         free(manual_path);
         free(ptr);
@@ -97,11 +91,8 @@ void executeHelp() {
 
     // Clear the screen before displaying the manual and execute the command afterwards, displaying an error if needed.
     executeClr();
-    if (system(command) == -1) {
-        perror("Failed to execute the command");
-    }
-
-    // Free allocated memory
+    
+    system(command);
     free(manual_path);
     free(ptr);
     free(command);
@@ -129,19 +120,14 @@ void executeDir() {
     if (argSize == 1) { // If "dir" is the only argument invoked, call "ls -al"  from the system
         system("ls -al"); 
     } else if (argSize == 2) { // If the directory is included, assign directory name to char pointer "dir"
-        char *dir = args[1];
-        char *command = malloc(strlen("ls -al " + strlen(dir) + 1)); // Allocate memory to local variable command
-
+        char *command = malloc(strlen("ls -al " + strlen(args[1]) + 1)); // Allocate memory to local variable command
         if(command == NULL){ // If memory allocation has failed, print error
             perror("Memory allocation has failed!");
             exit(EXIT_FAILURE);
-        } else if(strlen("ls -al ") + strlen(dir) + 1 > MAX_BUFFER) { // If the command length exceeds MAX_BUFFER, display error message
-            fprintf(stderr, "Command is too long\n");
-        }
-
+        } 
         // Copy the string "ls -al" to command, concatenate directory in args, call command and free memory 
         strcpy(command, "ls -al ");
-        strcat(command, dir);
+        strcat(command, args[1]);
         system(command);
         free(command);
     } else { // Display invalid argument error to stderr
@@ -151,11 +137,9 @@ void executeDir() {
 
 /* Function that executes the built-in "environ" command */
 void executeEnviron() {
-    // Set env pointer to first environment variable, and loop through each one printing out information.
-    char **env = environ;
-    while (*env) {
+    // Loop through each one printing out information.
+    for(char **env = environ; *env; env++){
         printf("%s\n", *env);
-        env++; 
     }
 }
 
@@ -180,7 +164,7 @@ void IORedirection() {
         perror("A forking error has occured in regards to I/O redirection\n"); // Display fork error
         exit(EXIT_FAILURE);
     } else if (pid == 0) { 
-
+        setenv("PARENT", getenv("SHELL"), 1);
         // Initialize input & output index to -1 (flags for redirection)
         int input_index = -1, output_index = -1;
         for (int i = 0; i < argSize; ++i) { // Find the indices of input and/or output files
@@ -230,7 +214,6 @@ void IORedirection() {
 
         // Execute the command with modified stdin/stdout streams
         execvp(args[0], args);
-        perror("A execvp error has occured in executing I/O redirection commands\n");
         exit(EXIT_FAILURE);
     } else {
         int status;
@@ -330,14 +313,7 @@ void setEnv(char *programName){
 /* Function that runs the shell */
 void runShell() {
     username = getenv("USER"); // Get the user associated with the operating system, and display an error if needed
-
-    if(username == NULL){
-        perror("Retrieving the user has failed!\n");  
-        exit(EXIT_FAILURE);
-    }
-
     welcomeUser(username); // Welcome the user
-
     while (1) {
         if (getcwd(cwd, sizeof(cwd)) == NULL) { // Try retrieving the cwd, display error if it fails
             perror("A getcwd error has occured\n");
@@ -358,12 +334,6 @@ void runShell() {
 /* Function that runs the shell based off the file */
 void runShellFromFile(FILE *file) {
     username = getenv("USER"); // Get the user associated with the operating system, and display an error if needed
-
-    if(username == NULL){
-        perror("Retrieving the user has failed!\n");
-        exit(EXIT_FAILURE);
-    }
-
     while (fgets(command, MAX_BUFFER, file) != NULL) { // Run until the command is NULL, getting each command from our file.
         if (strcmp(command, "\n") == 0) { // Skip empty lines
             continue;
@@ -395,22 +365,20 @@ void parseArgs(){
 
 /* Function to welcome the user */
 void welcomeUser(char *username){
-    // Clear the screen and display ASCII art.
+    // Clear the screen
     executeClr(); 
-
-    printf("*----------------------|myshell Program|-----------------------*\n");
-    printf("|                      *-_=_=_=_=_=_=_-*                       |\n");
-    printf("|   Student Name                               Student Number  |\n");
-    printf("| -----------------                               --------     |\n");
-    printf("| Samson Oloruntola                               22714745     |\n");
-    printf("|                                                              |\n");
-    printf("*--------------------------------------------------------------*\n\n");
     // Introductory text displayed to the user
-    printf("===== Welcome to myshell, %s! =====\n\n", username);
-    printf("==> To see more information on myshell, run 'help' to view the user manual.\n");
-    printf("==> To exit the program, run 'quit'.\n");
-    printf("==> To clear this screen, run 'clr'.\n\n");
-    // Sleep for 3 seconds total, for user to read text.
+    printf("=====:[ Welcome to myshell, %s! ]:=====\n\n", username);
+
+    printf("@---o--o--o--o--o--o[: Info :]o--o--o--o--o--o--@\n");
+    printf("|                                               |\n");
+    printf("|      Run `help` to view the user manual       |\n");
+    printf("|      To exit the program, run `quit`          |\n");
+    printf("|      To clear this screen, run `clr`          |\n");
+    printf("|                                               |\n");
+    printf("@--o--o--o--o--o--o[==========]o--o--o--o--o--o-@\n\n");
+
+    // Sleep for 3 seconds total.
     sleep(1);
     printf("==> Displaying prompt..\n\n");
     sleep(2);
