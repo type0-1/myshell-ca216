@@ -68,8 +68,9 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 * `>>`: Append output from a command to a file. e.g., `[command] [args] < [input_file] >> [output_file]`.
 
 
-## *BACKGROUND & FOREGROUND PROGRAM EXECUTION*
+## *PROCESSES, BACKGROUND & FOREGROUND PROGRAM EXECUTION*
 
+* Processes in reference to computers are can be denoted as tasks that are done in the background of your computer which perform a task in which you assign the computer to handle. Processes are more commonly explained as an instance of your current program, and holds many resources in order to execute these processes for you **Memory**, **Files** etc.
 
 ### *BACKGROUND PROGRAM EXECUTION*
        
