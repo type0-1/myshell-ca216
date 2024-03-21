@@ -41,10 +41,15 @@ Below are examples of command-line execution for the built in commands (the comm
 
 ## *EXTERNAL COMMANDS*
 
-Any command not built into myshell is considered as an *'External Command'*. myshell allows the execution of these external commands, displaying the resulting output to you. 
+Any command not built into myshell is considered as an *'External Command'*.
 
-For example, running `pwd` will print the current working directory and display the output to you.
+External commands can be commands, programs or scripts in which are located outside of myshell's pre-defined commands from its source code. These commands are separate executable files or scripts residing somewhere in your file system, when you enter an external command in the shell, the shell needs to locate the corresponding executable file, then fork a new process to execute it. 
 
+Examples of external commands include system utilities like `ls`, `pwd`, `grep`, `cat`, and user-defined scripts or executables.
+
+To provide an example, when you run `myshell` and invoke the following command `pwd`, myshell recognises that it is not a built-in command and treats it like an external command. 
+
+This locates the `pwd` executable in the system and executes it as a separate process and shows the output back to you. This follows the same process as any other command.
 
 ## *PROGRAM ENVIRONMENT*
 
