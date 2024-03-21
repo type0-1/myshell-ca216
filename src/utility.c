@@ -6,7 +6,7 @@
     and accept any penalties that are in place if I engage in any activity which breaches this policy for assignment 1, myshell in CA216.
 */
 
-// Importing the C header file "myshell.h" to utilize functions, global variables and import libraries 
+// Importing the C header file "myshell.h" 
 #include "myshell.h"
 
 // Declaring global variables derived from myshell.h 
@@ -25,7 +25,7 @@ char *username;
 */
 
 void executeCD() {
-    // Get the current working directory, print it to the user and update the PWD environment variable.
+    // Get the current working directory, print it to the user and update the PWD env variable.
     if (argSize == 1) { // Only "cd" was invoked
         if (getcwd(cwd, sizeof(cwd)) != NULL) {
             printf("%s\n", cwd);
@@ -39,13 +39,13 @@ void executeCD() {
             }
         }
     } else { // Invalid arguments
-        fprintf(stderr, "Invalid arguments for cd\n"); // Invalid arguments invoked
+        fprintf(stderr, "Invalid arguments for cd\n");
     }
 }
 
 /* Function that executes the built-in "clr" command  */
 void executeClr() {
-    system("clear"); // Call "clear" on the system function
+    system("clear"); 
 }
 
 /* Function that executes the built in "help" command */
@@ -112,20 +112,20 @@ void executeQuit(char *username) {
     printf("==> Exiting "ANSI_COLOR_RED"myshell"ANSI_COLOR_RESET"...\n\n");
     sleep(2);
     executeClr();
-    exit(EXIT_SUCCESS); // Exit success.
+    exit(EXIT_SUCCESS);
 }
 
 /* Function that executes the built-in "dir" command */
 void executeDir() {
-    if (argSize == 1) { // If "dir" is the only argument invoked, call "ls -al"  from the system
+    if (argSize == 1) { // If "dir" is the only argument invoked, call "ls -al"
         system("ls -al"); 
-    } else if (argSize == 2) { // If the directory is included, assign directory name to char pointer "dir"
-        char *command = malloc(strlen("ls -al " + strlen(args[1]) + 1)); // Allocate memory to local variable command
+    } else if (argSize == 2) { // If the dir is included, assign dir name to char pointer "dir"
+        char *command = malloc(strlen("ls -al " + strlen(args[1]) + 1)); // Allocate memory to local variable
         if(!command){ // If memory allocation has failed, print error
             perror("Memory allocation has failed!");
             exit(EXIT_FAILURE);
         } 
-        // Copy the string "ls -al" to command, concatenate directory in args, call command and free memory 
+        // Copy the string "ls -al" to command, concatenate dir in args, call command and free memory 
         strcpy(command, "ls -al ");
         strcat(command, args[1]);
         system(command);
@@ -137,7 +137,7 @@ void executeDir() {
 
 /* Function that executes the built-in "environ" command */
 void executeEnviron() {
-    // Loop through each one printing out information.
+    // Loop and print each env
     for(char **env = environ; *env; env++){
         printf("%s\n", *env);
     }
@@ -145,7 +145,7 @@ void executeEnviron() {
 
 /* Function that executes the built-in "echo" command */
 void executeEcho() {
-    // Print a newline if "echo" is the only argument, else print each environment variable followed by a newline
+    // Print a newline if "echo" is the only argument, else print each env variable
     if (argSize == 1) {
         printf("\n");
     } else {
@@ -164,7 +164,7 @@ void IORedirection() {
         perror("A forking error has occured in regards to I/O redirection\n"); // Display fork error
         exit(EXIT_FAILURE);
     } else if (pid == 0) { 
-        setenv("PARENT", getenv("SHELL"), 1); // Set the PARENT environment to the SHELL variable value
+        setenv("PARENT", getenv("SHELL"), 1); // Set the PARENT env to the SHELL variable value
         // Initialize input & output index to -1 (flags for redirection)
         int input_index = -1, output_index = -1;
         for (int i = 0; i < argSize; ++i) { // Find the indices of input and/or output files
@@ -237,7 +237,7 @@ void executeExternal(bool runInBackground) {
         execvp(args[0], args);
         perror("A execvp error has occured in trying to execute external commands\n");
         exit(EXIT_FAILURE);
-    } else { // Parent process: continue with the shell prompt
+    } else { // Continue with the shell prompt
         if (runInBackground == 0) { // Check for background processing
             int status;
             waitpid(pid, &status, 0); // Wait for child process if not running in background
@@ -305,14 +305,14 @@ void setEnv(char *programName){
         exit(EXIT_FAILURE);
     }
 
-    // Set the PARENT and SHELL environment variable values to shell_path, and free memory.
+    // Set SHELL env to shell_path, and free memory.
     setenv("SHELL", shell_path, 1); 
     free(shell_path);
 }
 
 /* Function that runs the shell */
 void runShell() {
-    username = getenv("USER"); // Get the user associated with the operating system, and display an error if needed
+    username = getenv("USER"); // Get the user
     welcomeUser(username); // Welcome the user
     while (1) {
         if (getcwd(cwd, sizeof(cwd)) == NULL) { // Try retrieving the cwd, display error if it fails
@@ -321,7 +321,7 @@ void runShell() {
             printf("["ANSI_COLOR_YELLOW"myshell"ANSI_COLOR_RESET":"ANSI_COLOR_MAGENTA" %s"ANSI_COLOR_RESET"] ~"ANSI_COLOR_BLUE"%s"ANSI_COLOR_RESET"> ", username, cwd); 
         }
         fgets(command, MAX_BUFFER, stdin); // Read command from stdin
-        command[strcspn(command, "\n")] = '\0'; // Find the first occurence of the newline character and set it to the null terminator.
+        command[strcspn(command, "\n")] = '\0'; // Set first occurence of newline to NULL terminator.
 
         if(!strlen(command)){ // If the command is empty, skip to the next iteration.
             continue;
@@ -333,12 +333,12 @@ void runShell() {
 
 /* Function that runs the shell based off the file */
 void runShellFromFile(FILE *file) {
-    username = getenv("USER"); // Get the user associated with the operating system, and display an error if needed
-    while (fgets(command, MAX_BUFFER, file) != NULL) { // Run until the command is NULL, getting each command from our file.
+    username = getenv("USER"); // Get the user
+    while (fgets(command, MAX_BUFFER, file) != NULL) { // Run each until the command is NULL
         if (strcmp(command, "\n") == 0) { // Skip empty lines
             continue;
         }
-        command[strcspn(command, "\n")] = '\0';  // Find the first occurence of the newline character and set it to the null terminator.
+        command[strcspn(command, "\n")] = '\0';  // Set first occurence of newline to NULL terminator.
         parseArgs(); // Parse commands
         checkCommands(); // Check commands and handle redirection
     }
@@ -350,17 +350,17 @@ void runShellFromFile(FILE *file) {
 */
 
 void parseArgs(){
-    // Set initial arg size to 0 and begin tokenization on command, based on separators.
+    // Set initial arg size to 0 and begin tokenization
     argSize = 0; 
     char *ptr = strtok(command, " \t\n");
 
-    // Tokenize arguments until we have met a NULL argument, or have reacehed size limit (argSize < MAX_ARGS - 1).
+    // Tokenize arguments until NULL, or have reacehed size limit.
     while (ptr != NULL && argSize < MAX_ARGS - 1) {
         // Set the value at position argSize to ptr, and move to the next token
         args[argSize++] = ptr;
         ptr = strtok(NULL, " \t\n");
     }
-    args[argSize] = NULL; // Terminate the args array with NULL
+    args[argSize] = NULL; // Terminate args array with NULL
 }
 
 /* 
@@ -368,6 +368,7 @@ Function to welcome the user
 
 This welcome screen was inspired by: https://termcast.computing.dcu.ie/
 Colour functionality was sourced from: https://stackoverflow.com/questions/3219393/stdlib-and-colored-output-in-c
+
 */
 
 void welcomeUser(char *username){
