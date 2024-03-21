@@ -365,7 +365,9 @@ void parseArgs(){
 
 /* 
 Function to welcome the user 
+
 This welcome screen was inspired by: https://termcast.computing.dcu.ie/
+Colour functionality was sourced from: https://stackoverflow.com/questions/3219393/stdlib-and-colored-output-in-c
 */
 
 void welcomeUser(char *username){
@@ -373,8 +375,7 @@ void welcomeUser(char *username){
     executeClr(); 
     // Introductory text displayed to the user
     printf("=====:[ Welcome to myshell, "ANSI_COLOR_YELLOW"%s"ANSI_COLOR_RESET"! ]:=====\n\n", username);
-
-    // Display welcome screen, colour functionality was sourced from: https://stackoverflow.com/questions/3219393/stdlib-and-colored-output-in-c
+    // Display ASCII art with colours.
     printf("@---o--o--o--o--o--o[:" ANSI_COLOR_YELLOW " Info :" ANSI_COLOR_RESET "]o--o--o--o--o--o---@\n");
     printf("|                                                |\n");
     printf("|       Run " ANSI_COLOR_MAGENTA "`help`" ANSI_COLOR_RESET " to view the user manual       |\n");
