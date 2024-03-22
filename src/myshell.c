@@ -6,11 +6,11 @@
     and accept any penalties that are in place if I engage in any activity which breaches this policy for assignment 1, myshell in CA216.
 */
 
-// Importing the C header file "myshell.h" to utilize functions and libraries
+// Importing the C header file "myshell.h"
 #include "myshell.h"
 
 int main(int argc, char *argv[]) {
-    // Set the shell environment variable shell to the shell path.
+    // Set shell env variable to the shell exe path.
     setEnv(argv[0]);
 
     if (argc == 2) {

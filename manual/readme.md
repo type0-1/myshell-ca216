@@ -11,9 +11,13 @@
 myshell is a simple shell/command line interpreter created in the C programming language, which enables you to interact with the computer's operating system by providing basic functionality for executing commands, managing different processes, and manipulating files. 
 
 
-## *INTERNAL COMMANDS & DESCRIPTIONS*
+## *INTERNAL COMMANDS*
 
-myshell supports a wide range of built-in commands for you to execute. These said commands are referred to as *'Internal Commands'*. These internal commands are listed below and allow you to execute a range of useful commands.
+myshell supports a wide range of built-in commands for you to execute. These said commands are referred to as *'Internal Commands'*. 
+
+When you enter one of these internal commands into `myshell`, myshell recognizes it as a built-in command and executes it using its own process. 
+
+These internal commands are listed below and allow you to execute a range of useful commands.
 
 * `cd`:-> Change the current directory or print the current directory if only 'cd' is invoked
 *  `clr`:-> Clears the screen, equivalent to 'clear'
@@ -59,10 +63,9 @@ There are primarily two different types of environment variables.
 
 * *System Variables*: These variables are pre-defined in your system and display information about the corresponding environment variable. `HOME`, `PWD`, `SHELL` etc.
 
-* *User Variables*: These variables are defined by the user.
+- For example, when you run myshell, your user name associated with the device running myshell is displayed to you in the command-line prompt. This was achieved by retrieving the pre-defined system variable `USER` and displaying it.
 
-- For example, when you run myshell, your user name associated with the device running myshell is displayed to you in the command-line prompt. This was achieved by retrieving the `USER` environment variable and displaying it.
-
+* *User Variables*: These variables are defined by the user, which can also be customized according to your preferences/requirements. As they are user variables, they usually store user-specific information and/or settings that can have a varying level of impact with the behaviours of programs and the environment.
 
 ## *INPUT/OUTPUT REDIRECTION*
 
@@ -84,7 +87,9 @@ Input/Output (I/O) redirection is one of the many features in myshell, where I/O
 
 ### *FOREGROUND PROGRAM EXECUTION*
 
-* Foreground program execution performs commands within myshell's main process ID itself, in a single-task basis, ideally for immediate execution of important commands. You can invoke foreground commands by simply disregarding the ampersand `&` symbol when invoking a command to execute them in the foreground. This way of executing a command is to be differentiated from background program execution because the behaviours from background & foreground execution are processed in a different way.
+* Foreground program execution performs commands within myshell's main process ID itself, in a single-task basis, ideally for immediate execution of important commands. You can invoke foreground commands by simply disregarding the ampersand `&` symbol when invoking a command to execute them in the foreground. 
+
+This way of executing a command is to be differentiated from background program execution because the behaviours from background & foreground execution are processed in a different way.
 
 
 ### *MAIN DIFFERENCE*
